@@ -1,0 +1,10 @@
+FROM python:latest
+
+RUN pip install --upgrade google-cloud-storage
+RUN pip install wget
+
+WORKDIR /usr/app/src
+
+COPY practice1.py ./
+COPY application_default_credentials.json ./
+CMD [ "python", "./practice1.py"]
