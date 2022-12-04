@@ -1,0 +1,14 @@
+#test nested repeated 
+SELECT fullVisitorId, channelGrouping, PARSE_DATE('%Y%m%d', date) AS date,
+ARRAY_AGG(STRUCT(totals_totalTransactionRevenue, totals_transactions))
+FROM balmy-hologram-370008.assignment3.rev_transactions
+group by 1, 2, 3 
+
+
+# partisi dan kluster
+CREATE OR REPLACE TABLE
+balmy-hologram-370008.assignment3.rev_transactions_partitioned_clustered
+PARTITION BY date_1
+CLUSTER BY geoNetwork_country
+AS
+SELECT channelGrouping, date_1, geoNetwork_country, totals_totalTransactionRevenue, totals_transactions FROM balmy-hologram-370008.assignment3.rev_transactions1;
