@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: taxi_tripdata
+    tables:
+      - name: taxi_tripdata01
+        columns:
+          - name: VendorID
+          tests:
+            - not_null
